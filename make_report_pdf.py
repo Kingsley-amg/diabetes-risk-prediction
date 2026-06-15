@@ -95,7 +95,7 @@ with PdfPages(pdf_path) as pdf:
     # --- Slide 4: Results ---
     fig, ax = new_slide()
     rf = metrics["models"]["Random Forest"]; lr = metrics["models"]["Logistic Regression"]
-    heading(ax, "RESULTS", "Strong, well-calibrated\nrisk scores")
+    heading(ax, "RESULTS", "Strong discrimination on\nimbalanced data")
     ax.text(0.06, 0.60, f"Random Forest:  ROC-AUC {rf['roc_auc']:.2f}   ·   PR-AUC {rf['pr_auc']:.2f}",
             fontsize=16, color=INK, fontweight="bold")
     ax.text(0.06, 0.555, "(PR-AUC vs. a 0.14 random baseline; ~62% of true cases flagged "
