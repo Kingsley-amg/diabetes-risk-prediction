@@ -1,0 +1,44 @@
+{
+  "n_rows": 253680,
+  "n_features": 21,
+  "prevalence": 0.1393,
+  "models": {
+    "Logistic Regression": {
+      "roc_auc": 0.8219,
+      "pr_auc": 0.3971
+    },
+    "Random Forest": {
+      "roc_auc": 0.8265,
+      "pr_auc": 0.4213
+    }
+  },
+  "best_model": "Random Forest",
+  "chosen_threshold": 0.613,
+  "classification_report": {
+    "No diabetes": {
+      "precision": 0.9309000347030845,
+      "recall": 0.8354615906051335,
+      "f1-score": 0.8806024910688424,
+      "support": 54583.0
+    },
+    "Diabetes": {
+      "precision": 0.37774544446753966,
+      "recall": 0.6169514541133869,
+      "f1-score": 0.46858616244091106,
+      "support": 8837.0
+    },
+    "accuracy": 0.8050141911069063,
+    "macro avg": {
+      "precision": 0.6543227395853121,
+      "recall": 0.7262065223592602,
+      "f1-score": 0.6745943267548767,
+      "support": 63420.0
+    },
+    "weighted avg": {
+      "precision": 0.8538229751964381,
+      "recall": 0.8050141911069063,
+      "f1-score": 0.8231917642305416,
+      "support": 63420.0
+    }
+  }
+}

@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.DS_Store
+
+# Keep data/ and outputs/ in the repo (small, and they showcase results)
