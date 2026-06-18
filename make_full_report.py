@@ -93,10 +93,10 @@ story.append(bullets([
     f"baseline was close behind (ROC-AUC {lr['roc_auc']:.2f}).",
     f"At an F1-optimal threshold ({m['chosen_threshold']:.2f}), the model identifies "
     f"<b>{cr['Diabetes']['recall']*100:.0f}% of true diabetes cases</b> (recall) at "
-    f"{cr['Diabetes']['precision']*100:.0f}% precision — a recall-leaning operating point "
+    f"{cr['Diabetes']['precision']*100:.0f}% precision, a recall-leaning operating point "
     "appropriate for screening.",
     "SHAP shows the strongest drivers are <b>general health, high blood pressure, BMI, high "
-    "cholesterol and age</b> — consistent with the clinical literature, indicating the model "
+    "cholesterol and age</b>, consistent with the clinical literature, indicating the model "
     "learned genuine signal rather than noise.",
     "The raw probabilities are <b>over-confident</b> (a side effect of class weighting); the "
     "rank-ordering is reliable, but probability calibration is recommended before any "
@@ -112,8 +112,8 @@ story.append(P(
     "help prioritise confirmatory testing and lifestyle intervention."))
 story.append(P(
     "<b>Objective:</b> build a model that predicts whether an adult has diabetes from routine "
-    "indicators, evaluate it honestly given the class imbalance, and — crucially for a health "
-    "setting — explain <i>why</i> it makes each prediction so that the output can be "
+    "indicators, evaluate it honestly given the class imbalance, and, crucially for a health "
+    "setting, explain <i>why</i> it makes each prediction so that the output can be "
     "scrutinised rather than trusted blindly."))
 
 # ---------- 2. DATA ----------
@@ -146,7 +146,7 @@ story.append(P(
     "Before modelling, the relationships between features and the target were examined. "
     "Respondents with diabetes tend to have higher BMI, poorer self-rated general health "
     "(higher values denote worse health), older age, and a greater prevalence of high blood "
-    "pressure — all directions expected from clinical knowledge."))
+    "pressure, all directions expected from clinical knowledge."))
 story += figure(FIG / "02_features_by_target.png",
                 "Figure 2. Distribution of key features by diabetes status (No vs. Yes). "
                 "Clear separation in BMI, general health, age and blood pressure.", max_h=2.6*inch)
@@ -154,7 +154,7 @@ story.append(P(
     "Ranking each feature by its linear correlation with the target reinforces this picture: "
     "general health, high blood pressure, BMI, difficulty walking, high cholesterol and age "
     "are the strongest positive correlates, while income, education and physical activity are "
-    "negatively associated with diabetes — echoing the well-documented social gradient in "
+    "negatively associated with diabetes, echoing the well-documented social gradient in "
     "chronic disease."))
 story += figure(FIG / "03_feature_correlation.png",
                 "Figure 3. Correlation of each feature with the diabetes target. "
@@ -170,9 +170,9 @@ story.append(P(
     "requires no scaling."))
 story.append(H2("4.2 Models"))
 story.append(bullets([
-    "<b>Logistic regression</b> (baseline) — interpretable linear model, with "
+    "<b>Logistic regression</b> (baseline), interpretable linear model, with "
     "<i>class_weight = balanced</i> to counter the imbalance.",
-    "<b>Random forest</b> — 300 trees, max depth 12, minimum 20 samples per leaf, also "
+    "<b>Random forest</b>, 300 trees, max depth 12, minimum 20 samples per leaf, also "
     "class-weighted. Captures non-linearities and feature interactions."]))
 story.append(H2("4.3 Evaluation strategy"))
 story.append(P(
@@ -268,7 +268,7 @@ story += figure(FIG / "08_shap_beeswarm.png",
 story.append(H1("6. Discussion"))
 story.append(P(
     "Three findings stand out. First, <b>self-rated general health is the single most powerful "
-    "predictor</b> — a one-question, zero-cost signal that rivals clinical measurements, which "
+    "predictor</b>, a one-question, zero-cost signal that rivals clinical measurements, which "
     "is valuable for low-resource screening. Second, the <b>logistic model nearly matches the "
     "random forest</b>, so a fully transparent linear model is a defensible deployment choice "
     "where interpretability or auditability is paramount. Third, the performance level "
@@ -280,7 +280,7 @@ story.append(H1("7. Limitations and responsible use"))
 story.append(bullets([
     "<b>Self-reported survey data</b> carries recall and social-desirability bias; BMI, "
     "diagnoses and behaviours are not clinically verified.",
-    "<b>Cross-sectional design</b> means the model captures association, not causation — it "
+    "<b>Cross-sectional design</b> means the model captures association, not causation, it "
     "cannot say that changing a factor will change risk.",
     "<b>Population and era specific</b> (US adults, 2015); performance may not transfer to "
     "other countries or healthcare systems without revalidation.",
@@ -295,7 +295,7 @@ story.append(H1("8. Conclusion"))
 story.append(P(
     "This project delivers an explainable, honestly-evaluated diabetes risk model. The random "
     f"forest discriminates well (ROC-AUC {rf['roc_auc']:.2f}, PR-AUC {rf['pr_auc']:.2f}) and, at "
-    f"a recall-leaning threshold, catches {cr['Diabetes']['recall']*100:.0f}% of true cases — "
+    f"a recall-leaning threshold, catches {cr['Diabetes']['recall']*100:.0f}% of true cases, "
     "an operating point suited to screening. SHAP confirms the model relies on clinically "
     "coherent factors, and the analysis is transparent about its weaknesses, notably "
     "probability calibration. Clear next steps are probability calibration, tuning the decision "

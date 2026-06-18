@@ -1,5 +1,5 @@
 """
-Diabetes Risk Prediction — end-to-end analysis
+Diabetes Risk Prediction, end-to-end analysis
 ================================================
 Predicts diabetes risk from health & lifestyle indicators (CDC BRFSS 2015),
 then explains the model with SHAP.
@@ -56,7 +56,7 @@ metrics["prevalence"] = round(float(y.mean()), 4)
 # ---------------------------------------------------------------------------
 # 2. EDA
 # ---------------------------------------------------------------------------
-# 2a. Class balance — important: the data is imbalanced, so accuracy alone lies.
+# 2a. Class balance, important: the data is imbalanced, so accuracy alone lies.
 plt.figure(figsize=(5, 4))
 ax = sns.countplot(x=y, palette=["#9aa6b2", "#e31a1c"])
 ax.set_xticklabels(["No diabetes", "Diabetes"])
@@ -135,7 +135,7 @@ for name, r in results.items():
 a1.plot([0, 1], [0, 1], "k--", lw=1); a1.set(xlabel="False positive rate",
         ylabel="True positive rate", title="ROC curve"); a1.legend()
 a2.axhline(y_test.mean(), ls="--", c="k", lw=1, label=f"baseline ({y_test.mean():.2f})")
-a2.set(xlabel="Recall", ylabel="Precision", title="Precision–Recall curve"); a2.legend()
+a2.set(xlabel="Recall", ylabel="Precision", title="Precision-Recall curve"); a2.legend()
 plt.tight_layout(); plt.savefig(OUT / "04_roc_pr_curves.png", dpi=120); plt.close()
 
 # 5b. Choose a threshold that prioritises catching cases (recall) for screening.
@@ -154,10 +154,10 @@ metrics["classification_report"] = classification_report(
 ConfusionMatrixDisplay(confusion_matrix(y_test, pred),
                        display_labels=["No diabetes", "Diabetes"]).plot(
     cmap="Reds", colorbar=False)
-plt.title(f"{best_name} — confusion matrix (thr={best_thr:.2f})")
+plt.title(f"{best_name}, confusion matrix (thr={best_thr:.2f})")
 plt.tight_layout(); plt.savefig(OUT / "05_confusion_matrix.png", dpi=120); plt.close()
 
-# 5d. Calibration — are predicted probabilities trustworthy?
+# 5d. Calibration, are predicted probabilities trustworthy?
 frac_pos, mean_pred = calibration_curve(y_test, best["proba"], n_bins=10)
 plt.figure(figsize=(6, 5))
 plt.plot([0, 1], [0, 1], "k--", label="perfectly calibrated")
@@ -167,7 +167,7 @@ plt.title("Calibration curve"); plt.legend()
 plt.tight_layout(); plt.savefig(OUT / "06_calibration.png", dpi=120); plt.close()
 
 # ---------------------------------------------------------------------------
-# 6. EXPLAINABILITY (SHAP) — why does the model predict risk?
+# 6. EXPLAINABILITY (SHAP), why does the model predict risk?
 # ---------------------------------------------------------------------------
 import shap
 print("\nComputing SHAP values (sampled) ...")
@@ -184,7 +184,7 @@ shap.summary_plot(sv1, X_shap, plot_type="bar", show=False)
 plt.title("Global feature importance (mean |SHAP|)")
 plt.tight_layout(); plt.savefig(OUT / "07_shap_importance.png", dpi=120); plt.close()
 
-# 6b. Beeswarm — direction & magnitude of each feature's effect
+# 6b. Beeswarm, direction & magnitude of each feature's effect
 plt.figure()
 shap.summary_plot(sv1, X_shap, show=False)
 plt.title("How each feature pushes risk up or down")
